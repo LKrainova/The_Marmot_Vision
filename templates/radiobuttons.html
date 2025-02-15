@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Разметка</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+        }
+        .sidebar {
+            width: 250px;
+            background: #f5f5f5;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-right: 1px solid #ddd;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        h2 {
+            margin-bottom: 15px;
+        }
+        .query-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+        .options label {
+            background: #e0e0e0;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .options input {
+            display: none;
+        }
+        .options input:checked + label {
+            background: #4CAF50;
+            color: white;
+        }
+        .save-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .save-button:hover {
+            background-color: #45a049;
+        }
+        .task-info a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .task-info a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h3>Оценка</h3>
+        <form method="POST">
+            <div class="options">
+                <input type="radio" id="exact" name="assessment" value="exact" required>
+                <label for="exact">Точно</label>
+
+                <input type="radio" id="complement" name="assessment" value="complement">
+                <label for="complement">Сопутствующий</label>
+
+                <input type="radio" id="substitute" name="assessment" value="substitute">
+                <label for="substitute">Частично</label>
+
+                <input type="radio" id="irrelevant" name="assessment" value="irrelevant">
+                <label for="irrelevant">Бесполезный</label>
+
+                <input type="radio" id="impossible" name="assessment" value="impossible">
+                <label for="impossible">Невозможно</label>
+            </div>
+            <button type="submit" class="save-button">Сохранить</button>
+        </form>
+    </div>
+
+    <div class="main-content">
+        <h2>Разметка поиска</h2>
+        <div class="task-info">
+            <p><strong>Запрос:</strong> {{ task['query'] }}</p>
+            <p><strong>Название:</strong> {{ task['title'] }}</p>
+            <p><strong>Url:</strong> <a href="{{ task['url'] }}" target="_blank">{{ task['url'] }}</a></p>
+            <p><strong>Описание:</strong></p>
+<!--            <ul>-->
+<!--                {% for item in task['description'] %}-->
+<!--                    <li>{{ item }}</li>-->
+<!--                {% endfor %}-->
+<!--            </ul>-->
+        </div>
+    </div>
+
+</body>
+</html>
